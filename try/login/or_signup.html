@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="h.css">
+    <title>House Dekho| Login & Registration</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>LOGO .</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="p.html" class="link active">Home</a></li>
+                <li><a href="#" class="link">Blog</a></li>
+                <li><a href="#" class="link">Services</a></li>
+                <li><a href="#" class="link">About</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="showLogin()">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="showRegister()">Sign Up</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+    <!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+
+        <div class="login-container" id="login">
+            <div class="top">
+                <span>Don't have an account? <a href="#" onclick="showRegister()">Sign Up</a></span>
+                <header>Login</header>
+            </div>
+            <div class="input-box">
+                <input type="text" id="loginUsername" class="input-field" placeholder="Username or Email">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="loginPassword" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" id="loginSubmit" class="submit" value="Sign In">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+
+        <!------------------- registration form -------------------------->
+        <div class="register-container" id="register">
+            <div class="top">
+                <span>Have an account? <a href="#" onclick="showLogin()">Login</a></span>
+                <header>Sign Up</header>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" id="firstName" class="input-field" placeholder="Firstname">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="lastName" class="input-field" placeholder="Lastname">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" id='registerEmail' class='input-field' placeholder='Email'>
+                <i class='bx bx-envelope'></i>
+            </div>
+            <div class='input-box'>
+                <input type='password' id='registerPassword' class='input-field' placeholder='Password'>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+
+            <!-- Success message -->
+            <div id='message'></div>
+
+            <!-- Register button -->
+            <div class='input-box'>
+                <input type='submit' id='registerSubmit' class='submit' value='Register'>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+// Menu Functionality
+function myMenuFunction() {
+    var i = document.getElementById("navMenu");
+    i.className = (i.className === "nav-menu") ? "nav-menu responsive" : "nav-menu";
+}
+
+// Show Login Form
+function showLogin() {
+    document.getElementById("login").style.left = "4px";
+    document.getElementById("register").style.right = "-520px";
+    document.getElementById("loginBtn").classList.add("white-btn");
+    document.getElementById("registerBtn").classList.remove("white-btn");
+}
+
+// Show Register Form
+function showRegister() {
+    document.getElementById("login").style.left = "-510px";
+    document.getElementById("register").style.right = "5px";
+    document.getElementById("loginBtn").classList.remove("white-btn");
+    document.getElementById("registerBtn").classList.add("white-btn");
+}
+
+// Form Submission Handling for Registration
+document.getElementById('registerSubmit').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    // Get form values
+    const username = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+
+    // Display a success message
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerHTML = `<p>Thank you for signing up, ${username}! You will receive a confirmation email at ${email}.</p>`;
+    
+    // Clear the form (reset not applicable since we are using divs)
+});
+
+// Handle login submission
+document.getElementById('loginSubmit').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    const usernameOrEmail = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+
+    // Placeholder for actual login validation logic
+    if (usernameOrEmail && password) { // Simple check for non-empty fields
+        // Redirect to home page after successful login
+        window.location.href = 'p.html'; // Change 'home.html' to your actual home page URL
+    } else {
+        alert('Please enter both username/email and password.');
+    }
+});
+</script>
+
+</html>

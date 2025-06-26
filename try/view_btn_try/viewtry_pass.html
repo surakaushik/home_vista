@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Properties - House Dekho</title>
+    <link rel="stylesheet" href="buy.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="House Dekho">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="p.html">Home</a></li>
+                <li><a href="buy.html">Buy</a></li>
+                <li><a href="sell.html">Sell</a></li>
+                <li><a href="rent.html">Rent</a></li>
+                <li><a href="#" id="signupBtn">Sign Up</a></li>
+                <li><a href="#" id="loginBtn">Log In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Available Properties for Sale</h1>
+        <div class="property-list">
+            <!-- Example Property Card -->
+            <div class="property-card">
+                <img src="images/OIP.jpeg" alt="Property 1">
+                <h2>Beautiful Family Home</h2>
+                <p>Location: New York, NY</p>
+                <p>Price: $750,000</p>
+                <p>4 Beds, 3 Baths, 2,500 sqft</p>
+                <button class="buy-button" onclick="openPropertyDetails('Beautiful Family Home', 'New York, NY', '$750,000', '4 Beds, 3 Baths, 2,500 sqft', ['images/OIP.jpeg', 'images/OIP (2).jpeg', 'images/OIP (3).jpeg'])">View Details</button>
+            </div>
+
+            <!-- Add more property cards similarly -->
+            <!-- Example Property Card -->
+            <div class="property-card">
+                <img src="images/OIP (2).jpeg" alt="Property 2">
+                <h2>Modern Apartment</h2>
+                <p>Location: San Francisco, CA</p>
+                <p>Price: $1,200,000</p>
+                <p>2 Beds, 2 Baths, 1,200 sqft</p>
+                <button class="buy-button" onclick="openPropertyDetails('Modern Apartment', 'San Francisco, CA', '$1,200,000', '2 Beds, 2 Baths, 1,200 sqft', ['images/OIP (2).jpeg', 'images/OIP (3).jpeg'])">View Details</button>
+            </div>
+
+            <!-- More property cards can be added here -->
+        </div>
+
+        <!-- Property Details Modal -->
+        <div id="propertyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+
+                <!-- Image Gallery -->
+                <div class="gallery-container">
+                    <img id="mainImage" src="" alt="Property Image" />
+                    <div class="thumbnails"></div>
+                </div>
+
+                <!-- Property Details -->
+                <h2 id="propertyTitle"></h2>
+                <p><strong>Location:</strong> <span id="propertyLocation"></span></p>
+                <p><strong>Price:</strong> <span id="propertyPrice"></span></p>
+                <p><strong>Details:</strong> <span id="propertyDetails"></span></p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script src="buy.js"></script>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        // Function to open the property details modal
+        function openPropertyDetails(title, location, price, details, images) {
+            document.getElementById('propertyTitle').innerText = title;
+            document.getElementById('propertyLocation').innerText = location;
+            document.getElementById('propertyPrice').innerText = price;
+            document.getElementById('propertyDetails').innerText = details;
+
+            // Set the main image and thumbnails
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailsContainer = document.querySelector('.thumbnails');
+            
+            // Clear previous thumbnails
+            thumbnailsContainer.innerHTML = '';
+            
+            // Set the main image to the first image in the array
+            mainImage.src = images[0];
+
+            // Create thumbnail images
+            images.forEach((image) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image;
+                imgElement.alt = title;
+                imgElement.onclick = () => changeImage(image);
+                imgElement.className = 'thumbnail';
+                thumbnailsContainer.appendChild(imgElement);
+            });
+
+            // Show the modal
+            document.getElementById('propertyModal').style.display = "block";
+        }
+
+        // Function to change main image in the gallery
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+        }
+
+        // Close modal functionality
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('propertyModal').style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('propertyModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- CSS for Modal and Gallery -->
+    <style>
+        /* Basic styles for modal and layout */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gallery-container {
+            text-align: center;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            max-height: 400px; /* Adjust as necessary */
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+        }
+
+        .thumbnails img {
+            width: 100px; /* Thumbnail size */
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>

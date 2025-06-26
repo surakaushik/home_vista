@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Properties - House Dekho</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 50px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffeb3b;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .property-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .property-card h2 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .property-card p {
+            margin: 5px 0;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .buy-button:hover {
+           background-color:#45a049; 
+        }
+
+        footer {
+           background-color:#333; 
+           color:white; 
+           padding :40px; 
+       }
+       
+       .footer-content { 
+           display:flex; 
+           justify-content :space-between; 
+           max-width :1200px; 
+           margin:auto; 
+       }
+       
+       /* Modal Styles */
+       .modal { 
+           display:none; 
+           position :fixed; 
+           z-index :1; 
+           left :0; 
+           top :0; 
+           width :100%; 
+           height :100%; 
+           overflow:auto; 
+           background-color :rgba(0,0,0,0.5); 
+       }
+       
+       .modal-content { 
+           background-color:#fefefe; 
+           margin :15% auto; 
+           padding :20px; 
+           border :1px solid #888; 
+           width :300px; 
+           border-radius :5px; 
+       }
+       
+       .close { color:#aaa; float:right; font-size :28px;font-weight:bold;}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="House Dekho">
+        </div>
+        <nav>
+             <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+                <li><a href="#">Rent</a></li>
+                <li><a href="#" id="signupBtn">Sign Up</a></li>
+                <li><a href="#" id="loginBtn">Log In</a></li>
+             </ul>
+         </nav>
+     </header>
+
+     <main>
+         <h1>Available Properties for Sale</h1>
+         <div class="property-list">
+
+             <!-- Property Cards -->
+             <div class="property-card">
+                 <img src="https://th.bing.com/th/id/OIP.j6YhqMTnk0ybEhBCeEsJCwHaFj?w=238&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Beautiful Family Home">
+                 <h2>Beautiful Family Home</h2>
+                 <p>Location: Near Sardar Patel Stadium, Ahmedabad, Gujarat, India</p> <!-- Updated Location -->
+                 <p>Price: ₹75,00,000</p> <!-- Updated Price -->
+                 <p>4 Beds, 3 Baths, 2,500 sqft</p>
+                 <button class="buy-button" onclick="openPropertyDetails('Beautiful Family Home', 'Near Sardar Patel Stadium, Ahmedabad, Gujarat, India', '₹75,00,000', '4 Beds, 3 Baths, 2,500 sqft')">View Details</button>
+             </div>
+
+             <div class="property-card">
+                 <img src="https://th.bing.com/th/id/OIP.Ig7ngWMwsssYCzVJ9mZybQHaFj?w=238&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Modern Apartment">
+                 <h2>Modern Apartment</h2>
+                 <p>Location: Vastrapur Lake Area, Ahmedabad, Gujarat, India</p>
+                 <p>Price: ₹1,20,00,000</p>
+                 <p>3 Beds, 2 Baths, 1,800 sqft</p>
+                 <button class="buy-button" onclick="openPropertyDetails('Modern Apartment', 'Vastrapur Lake Area, Ahmedabad, Gujarat, India', '₹1,20,00,000', '3 Beds, 2 Baths, 1,800 sqft')">View Details</button>
+             </div>
+
+             <div class="property-card">
+                 <img src="https://revivoto.com/blog/wp-content/uploads/Blog-Post-2-1170x780.jpg" alt="Luxury Villa">
+                 <h2>Luxury Villa</h2>
+                 <p>Location: Alipore Road, Surat, Gujarat, India</p>
+                 <p>Price: ₹2,50,00,000</p>
+                 <p>5 Beds, 4 Baths, 4,000 sqft</p>
+                 <button class="buy-button" onclick="openPropertyDetails('Luxury Villa', 'Alipore Road, Surat, Gujarat, India', '₹2,50,00,000', '5 Beds and 4 Baths')">View Details</button>
+             </div>
+
+             <div class="property-card">
+                 <img src="https://th.bing.com/th/id/OIP.dYBdpA6dAzFz03DzOfFbTwHaDj?w=1400&h=672&rs=1&pid=ImgDetMain" alt="Cozy Cottage">
+                 <h2>Cozy Cottage</h2>
+                 <p>Location: Khandala Village Road near Saputara Hill Station.</p>
+                 <p>Price: ₹35,00,000</p>
+                 <p>3 Beds and 2 Baths.</p>
+                 <button class="buy-button" onclick="openPropertyDetails('Cozy Cottage', 'Khandala Village Road near Saputara Hill Station.', '₹35,00,000', '3 Beds and 2 Baths')">View Details</button>
+             </div>
+
+             <!-- Additional property cards -->
+             <div class="property-card">
+                 <img src="https://th.bing.com/th/id/OIP.2ryvjKhBfScv2-ZjLhMwYwHaEP?w=265&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Spacious Bungalow">
+                 <h2>Spacious Bungalow</h2>
+                 <p>Location: Ghodasar Road near Naroda Circle.</p>
+                 <p>Price: ₹90,00,000</p>
+                 <p>5 Beds and 4 Baths.</p>
+                 <button class="buy-button" onclick="openPropertyDetails('Spacious Bungalow', 'Ghodasar Road near Naroda Circle.', '₹90.00.000', '5 Beds and 4 Baths')">View Details</button>
+             </div>
+
+             <!-- Last Property Card -->
+             <div class="property-card">
+                 <img src="https://th.bing.com/th/id/OIP.j6YhqMTnk0ybEhBCeEsJCwHaFj?w=238&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Charming House">
+                 <h2>Charming House</h2>
+                 <p>Location: Near Sabarmati Riverfront.</p><!-- Updated Location -->
+                 <p>Price ₹40.00.000.</p><!-- Updated Price -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+                  <!-- Added onclick event to open property details modal -->
+
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+               <!-- Added onclick event to open property details modal -->  
+
+              </div>
+
+         </div>         
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                
+                 
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <!--<span id='location'></span>-->
+                  <!--<span id='price'></span>-->
+                  <!--<span id='details'></span>-->
+                  <!--<span id='image'></span>-->
+                  <!--<span id='image'></span>-->
+                  <!--<span id='image'></span>-->
+                  <!--<span id='image'></span>-->
+                  <!--<span id='image'></span>-->
+                  <!--<span id='image'></span>-->
+                  //<--<span id='image'></span>-->
+                  
+
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+
+
+                   
+
+
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                    
+
+
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+
+
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+
+     </body>
+
+     </html>

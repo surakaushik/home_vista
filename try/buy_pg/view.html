@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Property Details</title>
+  <link rel="stylesheet" href="buy.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f8f9fa;
+    }
+
+    #property-details {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .gallery img {
+      width: 200px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .gallery img {
+
+        transition: transform 0.3s ease;
+        cursor: zoom-in;
+    }
+    .gallery img:hover {
+        transform: scale(5.05);
+    }
+
+  </style>
+</head>
+<body>
+  <div id="property-details">Loading property...</div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const propertyId = params.get("id");
+    const container = document.getElementById("property-details");
+
+    // Static backup data for default properties
+    const staticData = {
+        property1: {
+        id: "property1",
+        type: "Family Home",
+        bhk: 4,
+        expectedPrice: 750000,
+        negotiable: "No",
+        amenities: "Garage, Garden, Pool",
+        address: "New York, NY",
+        maplink: "https://maps.google.com",
+        images: ["OIP.jpeg"]
+        }
+    // Add more static properties if needed
+    };
+
+  // Try loading from localStorage first
+    let data = JSON.parse(localStorage.getItem(propertyId));
+
+  // If not found, fall back to hardcoded static data
+    if (!data && staticData[propertyId]) {
+        data = staticData[propertyId];
+    }
+
+    if (data) {
+        container.innerHTML = `
+        <h1>${data.bhk} BHK ${data.type}</h1>
+        <p><strong>Location:</strong> ${data.address}</p>
+        <p><strong>Price:</strong> ₹${data.expectedPrice} (${data.negotiable})</p>
+        <p><strong>Area:</strong> ${data.area} sqft</p>
+        <p><a href="${data.maplink}" target="_blank">📍 View on Google Maps</a></p>
+
+        <h3>Property Details</h3>
+        <ul>
+            <li><strong>Type:</strong> ${data.type}</li>
+            <li><strong>BHK:</strong> ${data.bhk}</li>
+            <li><strong>Bathrooms:</strong> ${data.bathrooms}</li>
+            <li><strong>Carpet Area:</strong> ${data.area} sqft</li>
+            <li><strong>Negotiable:</strong> ${data.negotiable}</li>
+        </ul>
+
+        <h3>Amenities</h3>
+        <ul>
+            ${data.amenities.split(",").map(a => `<li>${a.trim()}</li>`).join("")}
+        </ul>
+
+        <h3>Images</h3>
+        <div class="gallery">
+            ${data.images?.map(img => `<a href="${img}" target="_blank"><img src="${img}" /></a>`).join("") || "<p>No images uploaded.</p>"}
+        </div>
+        `;
+
+        
+    } else {
+        container.innerHTML = `<h2>Property not found.</h2><p>The listing may have been removed or the link is invalid.</p>`;
+    }
+  </script>
+
+</body>
+</html>
