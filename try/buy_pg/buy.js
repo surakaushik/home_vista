@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <h2>${prop.type} - ${prop.bhk} BHK</h2>
               <p>Price: ₹${prop.expectedPrice} (${prop.negotiable})</p>
               <p>${prop.amenities}</p>
-              <button class="buy-button view-btn" data-id="${prop.id}">View</button>
+              <button class="buy-button view-btn" data-id="${prop.id}">View Details</button>
             </div>`;
           propertyList.insertAdjacentHTML("afterbegin", html);
         }

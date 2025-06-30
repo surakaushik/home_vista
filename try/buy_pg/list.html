@@ -3,91 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>List Property</title>
+  <title>List Your Property</title>
   <link rel="stylesheet" href="list.css">
 </head>
 <body>
   <div class="form-container">
     <h1>List Your Property</h1>
-    <form id="propertyForm">
-      <!-- Step 1 -->
-      <div class="form-step active">
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="listingType" value="sell"> Sell</label>
-          <label><input type="checkbox" name="listingType" value="rent"> Rent</label>
-          <label><input type="checkbox" name="listingType" value="both"> Both</label>
+    <form id="propertyForm" novalidate>
+
+      <!-- Step 1: Listing Details -->
+      <fieldset class="form-step active">
+        <legend>Step 1: Listing Details</legend>
+
+        <div class="form-group">
+          <label>Listing Type:</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="listingType" value="sell"> Sell</label>
+            <label><input type="checkbox" name="listingType" value="rent"> Rent</label>
+            <label><input type="checkbox" name="listingType" value="both"> Both</label>
+          </div>
         </div>
 
-        <label>Expected Price
-          <input type="number" name="expectedPrice" required>
-        </label>
-        
-        <label><input type="checkbox" name="negotiable"> Negotiable</label>
-        
+        <div class="form-group">
+          <label for="expectedPrice">Expected Price (₹)</label>
+          <input type="number" id="expectedPrice" name="expectedPrice" required>
+        </div>
+
+        <div class="form-group">
+          <label><input type="checkbox" name="negotiable"> Negotiable</label>
+        </div>
+
         <div class="button-group">
           <button type="button" class="next-btn">Next</button>
         </div>
-      </div>
+      </fieldset>
 
-      <!-- Step 2 -->
-      <div class="form-step">
-        <label>BHK
-          <input type="number" name="bhk" min="1">
-        </label>
+      <!-- Step 2: Property Features -->
+      <fieldset class="form-step">
+        <legend>Step 2: Property Features</legend>
 
-        <label>Bathrooms
-          <input type="number" name="bathrooms" min="1">
-        </label>
+        <div class="form-group">
+          <label for="bhk">BHK</label>
+          <input type="number" id="bhk" name="bhk" min="1" required>
+        </div>
 
-        <label>Carpet Area (sqft)
-          <input type="number" name="area">
-        </label>
+        <div class="form-group">
+          <label for="bathrooms">Bathrooms</label>
+          <input type="number" id="bathrooms" name="bathrooms" min="1" required>
+        </div>
 
-        <label>Type of Property
-          <select name="type">
-            <option>Flat</option>
-            <option>Villa</option>
-            <option>Independent House</option>
+        <div class="form-group">
+          <label for="area">Carpet Area (sqft)</label>
+          <input type="number" id="area" name="area" required>
+        </div>
+
+        <div class="form-group">
+          <label for="type">Type of Property</label>
+          <select name="type" id="type" required>
+            <option value="">-- Select --</option>
+            <option value="Flat">Flat</option>
+            <option value="Villa">Villa</option>
+            <option value="Independent House">Independent House</option>
           </select>
-        </label>
-        <label>Amenities:</label>
-            <div class="checkbox-group">
+        </div>
+
+        <div class="form-group">
+          <label>Amenities:</label>
+          <div class="checkbox-group">
             <label><input type="checkbox" name="amenities" value="Gym"> Gym</label>
             <label><input type="checkbox" name="amenities" value="Swimming Pool"> Swimming Pool</label>
             <label><input type="checkbox" name="amenities" value="Game Room"> Game Room</label>
             <label><input type="checkbox" name="amenities" value="Security"> Security</label>
-            </div>
+          </div>
+        </div>
 
-            <label>Other Amenities:
-            <input type="text" name="customAmenities" placeholder="Add custom amenities separated by comma">
-        </label>
-
+        <div class="form-group">
+          <label for="customAmenities">Other Amenities</label>
+          <input type="text" id="customAmenities" name="customAmenities" placeholder="Balcony, Garden, etc.">
+        </div>
 
         <div class="button-group">
           <button type="button" class="prev-btn">Previous</button>
           <button type="button" class="next-btn">Next</button>
         </div>
-      </div>
+      </fieldset>
 
-      <!-- Step 3 -->
-      <div class="form-step">
-        <label>Upload Images
-          <input type="file" name="images" id="images" multiple accept="image/*">
-        </label>
+      <!-- Step 3: Images & Location -->
+      <fieldset class="form-step">
+        <legend>Step 3: Images & Location</legend>
 
-        <label>Paste Google Maps Location Link
-          <input type="url" name="maplink" placeholder="https://maps.google.com/...">
-        </label>
+        <div class="form-group">
+          <label for="images">Upload Images</label>
+          <input type="file" id="images" name="images" multiple accept="image/*">
+        </div>
 
-        <label>Property Address
-          <textarea name="address" rows="3" required></textarea>
-        </label>
+        <div class="form-group">
+          <label for="maplink">Google Maps Link</label>
+          <input type="url" id="maplink" name="maplink" placeholder="https://maps.google.com/..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Full Property Address</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
 
         <div class="button-group">
           <button type="button" class="prev-btn">Previous</button>
           <button type="submit">List Property</button>
         </div>
-      </div>
+      </fieldset>
     </form>
 
     <h2>Live Property Card Preview</h2>

@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     padding: 20px;
     display: flex;
@@ -14,8 +14,9 @@ header {
     align-items: center;
 }
 
-.logo img {
-    max-height: 50px;
+.logo{
+    font-size: 25px;
+    font-weight:bold ;
 }
 
 nav ul {
@@ -83,7 +84,7 @@ h1 {
 }
 
 .buy-button {
-    background-color: #4CAF50;
+    background-color: #ff9900;
     color: white;
     border: none;
     padding: 10px;
@@ -93,22 +94,21 @@ h1 {
 }
 
 .buy-button:hover {
-    background-color: #45a049;
+    background-color: #ff9900;
 }
 
 footer {
     background-color: #333;
     color: white;
-    padding: 40px 0;
+    padding: 5px 0;
+    font-size: small
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+.footer-bottom {
+    text-align: center;
+    margin-top: 10px;
+    font-size: smaller;
 }
-
 .footer-section {
     flex-basis: 30%;
 }

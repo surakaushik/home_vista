@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     padding: 20px;
     display: flex;
@@ -14,8 +14,9 @@ header {
     align-items: center;
 }
 
-.logo img {
-    max-height: 50px;
+.logo{
+    font-size: 25px;
+    font-weight:bold ;
 }
 
 nav ul {
@@ -82,8 +83,8 @@ h1 {
     margin: 5px 0;
 }
 
-.buy-button {
-    background-color: #4CAF50;
+.view-btn {
+    background-color: #ff9900;
     color: white;
     border: none;
     padding: 10px;
@@ -92,21 +93,23 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.buy-button:hover {
-    background-color: #45a049;
+.view-btn:hover {
+    background-color: #ff9900;
 }
 
 footer {
     background-color: #333;
     color: white;
-    padding: 40px 0;
+    padding: 5px 0;
+    font-size: small
 }
 
 .footer-content {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 10%;
 }
 
 .footer-section {
@@ -136,22 +139,23 @@ footer {
 .footer-section ul li a:hover {
     color: #4CAF50;
 }
+.footer-bottom {
+    text-align: center;
+    margin-top: 10px;
+    font-size: smaller;
+}
 
-.social-icons a {
+.social-icons > a > i {
     color: white;
     font-size: 24px;
     margin-right: 10px;
     transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
-    color: #4CAF50;
+.social-icons > a > i:hover {
+    color: white;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-}
 
 /* Modal Styles */
 .modal {
