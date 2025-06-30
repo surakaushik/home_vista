@@ -47,11 +47,12 @@ body {
 .login-form button {
     width: 100%;
     background-color: #ffb300;
-    border-radius: 3px;
+    border-radius: 5px;
     border: none;
     padding: 10px;
     color: white;
     cursor: pointer;
+    font-size: medium;
 }
 
 .login-form button:hover {

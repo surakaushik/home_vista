@@ -52,6 +52,7 @@ body {
     padding: 10px;
     color: white;
     cursor: pointer;
+    font-size: medium;
 }
 
 .login-form button:hover {

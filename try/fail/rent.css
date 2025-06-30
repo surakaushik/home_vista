@@ -104,11 +104,14 @@ footer {
     font-size: small
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 10px;
-    font-size: smaller;
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 10%;
 }
+
 .footer-section {
     flex-basis: 30%;
 }
@@ -150,9 +153,9 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    font-size: smaller;
 }
-
 /* Modal Styles */
 .modal {
     display: none; /* Hidden by default */
